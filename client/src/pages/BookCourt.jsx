@@ -3,10 +3,7 @@ import axios from 'axios';
 import { CheckCircle, ArrowRight, User, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-// --------------------------------------------------------------------------------
-// RENDER URL: Using a constant for the deployment URL
-// --------------------------------------------------------------------------------
-const RENDER_API_URL = "https://court-booking-system-qthg.onrender.com";
+const RENDER_API_URL = "https://court-booking-system-qthg.onrender.com"; // Your live API
 
 const BookCourt = () => {
   const navigate = useNavigate();
@@ -23,38 +20,39 @@ const BookCourt = () => {
   const [selectedCoach, setSelectedCoach] = useState(null);
 
   useEffect(() => {
-    // FIX: Use the direct Render URL for fetching resources
-    axios.get(`/api/resources`).then(res => setResources(res.data));
+    // Definitive Fix: Hardcoded URL
+    axios.get(`${RENDER_API_URL}/api/resources`).then(res => setResources(res.data));
   }, []);
 
   // Live Price Calculation
   useEffect(() => {
     if (selectedCourt) {
-      // FIX: Use the direct Render URL for price calculation
-      axios.post(`/api/calculate`, {
+      // Definitive Fix: Hardcoded URL
+      axios.post(`${RENDER_API_URL}/api/calculate`, {
         date, courtId: selectedCourt.id, startTime, endTime, 
         coachId: selectedCoach?.id, equipmentList: selectedEquipment
       }).then(res => setPrice(res.data.price));
+    } else {
+        setPrice(0); // Reset price if court is unselected
     }
   }, [selectedCourt, startTime, endTime, selectedEquipment, selectedCoach]);
 
   const handleBooking = async () => {
     try {
-      // FIX: Use the direct Render URL for booking
-      await axios.post(`/api/book`, {
+      // Definitive Fix: Hardcoded URL
+      await axios.post(`${RENDER_API_URL}/api/book`, {
         date, courtId: selectedCourt.id, startTime, endTime,
         coachId: selectedCoach?.id, equipmentList: selectedEquipment, totalPrice: price
       });
-      alert("Booking Confirmed! Please refresh My Bookings to view.");
+      alert("Booking Confirmed!");
       navigate('/my-bookings');
     } catch (err) {
       alert("Booking Failed: " + (err.response?.data?.error || "Server or Network Error"));
     }
   };
 
-  // Helper to toggle equipment
   const updateEquipment = (item, qty) => {
-    let list = [...selectedEquipment];
+    const list = [...selectedEquipment];
     const idx = list.findIndex(x => x.id === item.id);
     if(qty > 0) {
       if(idx > -1) list[idx].qty = qty;

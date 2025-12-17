@@ -3,17 +3,14 @@ import axios from 'axios';
 import { Calendar, TrendingUp, Clock, DollarSign, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// --------------------------------------------------------------------------------
-// RENDER URL: Using a constant for the deployment URL
-// --------------------------------------------------------------------------------
-const RENDER_API_URL = "https://court-booking-system-qthg.onrender.com";
+const RENDER_API_URL = "https://court-booking-system-qthg.onrender.com"; // Your live API
 
 const Dashboard = () => {
   const [stats, setStats] = useState({ total: 0, spent: 0, hours: 0 });
 
   useEffect(() => {
-    // FIX: Use the direct Render URL for fetching ALL bookings to calculate accurate stats
-    axios.get(`/api/bookings`)
+    // Definitive Fix: Hardcoded URL
+    axios.get(`${RENDER_API_URL}/api/bookings`)
       .then(res => {
         const bookings = res.data;
         const total = bookings.length;
@@ -24,7 +21,7 @@ const Dashboard = () => {
         
         setStats({ total, spent, hours });
       })
-      .catch(err => console.error("Error fetching dashboard stats:", err)); // Added error logging
+      .catch(err => console.error("Error fetching dashboard stats:", err));
   }, []);
   
   return (

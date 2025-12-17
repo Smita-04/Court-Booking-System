@@ -2,34 +2,25 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Calendar, Clock, MapPin, BadgeCheck } from 'lucide-react';
 
-// --------------------------------------------------------------------------------
-// RENDER URL: Using a constant for the deployment URL
-// --------------------------------------------------------------------------------
-const RENDER_API_URL = "https://court-booking-system-qthg.onrender.com";
+const RENDER_API_URL = "https://court-booking-system-qthg.onrender.com"; // Your live API
 
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    // FIX 1: Use the direct Render URL
-    // FIX 2: Correctly fetch /api/bookings (instead of /api/resources)
-    axios.get(`/api/bookings`)
+    // Definitive Fix: Hardcoded URL
+    axios.get(`${RENDER_API_URL}/api/bookings`)
       .then(res => setBookings(res.data))
       .catch(err => {
         console.error("Error fetching booking history:", err);
-        // Display a user-friendly error message if the API call fails
+        // Show an error if the server is unreachable
         setBookings([{ 
           id: -1, 
-          startTime: 0, 
-          endTime: 0, 
-          courtId: 0, 
-          totalPrice: 0, 
-          errorMessage: "Could not load history. API server is down or link is broken." 
+          errorMessage: "Could not load history. The API server is currently unreachable." 
         }]);
       });
   }, []);
 
-  // Filter out the error object if it was added
   const validBookings = bookings.filter(b => b.id !== -1);
 
   return (
