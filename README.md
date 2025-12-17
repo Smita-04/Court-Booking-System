@@ -83,6 +83,8 @@ The project uses a standard monorepo layout, separating the client and server in
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e9b12c24-8b6b-4a77-ab5e-8d8e3b61f040" />
 
 
+### **7. Frontend Deployment**
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8399ca8f-dea8-4b46-9423-553632a4d568" />
 
 
 
