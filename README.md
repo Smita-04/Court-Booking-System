@@ -50,16 +50,24 @@ The project uses a standard monorepo layout, separating the client and server in
 ## 🖥️ Application Evidence
 
 ### **1. Dashboard View: Runtime Statistics**
-![Dashboard Screenshot](PASTE_DASHBOARD_SCREENSHOT_URL_HERE)
+<img width="1920" height="1080" alt="Screenshot (53)" src="https://github.com/user-attachments/assets/e82e41c2-36b5-4cad-8121-1b5aef32d0e1" />
+
 
 ### **2. Booking Wizard: Decoupled UI Flow**
-![Booking Step 1 Screenshot](PASTE_COURT_SELECTION_SCREENSHOT_URL_HERE)
+<img width="1920" height="1080" alt="Screenshot (54)" src="https://github.com/user-attachments/assets/2a7c26e3-47a9-4f6c-b4d4-d5a14d17c4be" />
+<img width="1920" height="1080" alt="Screenshot (55)" src="https://github.com/user-attachments/assets/58d41334-61ba-48d6-829d-e42d18536e54" />
+<img width="1920" height="1080" alt="Screenshot (56)" src="https://github.com/user-attachments/assets/54f0310d-bde4-48e2-bf25-e0e08a84d684" />
+
+
+
 
 ### **3. Final Confirmation: Calculated Price**
-![Confirmation Step Screenshot](PASTE_CONFIRMATION_STEP_SCREENSHOT_URL_HERE)
+<img width="1920" height="1080" alt="Screenshot (57)" src="https://github.com/user-attachments/assets/499b1655-eac7-4f91-bbe9-824bc6444028" />
+
 
 ### **4. Booking History (View Completed Transactions)**
-![Booking History Screenshot](PASTE_BOOKING_HISTORY_SCREENSHOT_URL_HERE)
+<img width="1920" height="1080" alt="Screenshot (58)" src="https://github.com/user-attachments/assets/0f52374e-7b15-4315-b2b3-79036260e8eb" />
+
 
 ---
 
