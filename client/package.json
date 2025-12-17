@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build-fix": "VITE_API_URL=https://court-booking-system-qthg.onrender.com vite build"
+
   },
   "dependencies": {
     "autoprefixer": "^10.4.23",
