@@ -3,12 +3,17 @@ import axios from 'axios';
 import { Calendar, TrendingUp, Clock, DollarSign, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+// --------------------------------------------------------------------------------
+// RENDER URL: Using a constant for the deployment URL
+// --------------------------------------------------------------------------------
+const RENDER_API_URL = "https://court-booking-system-qthg.onrender.com";
+
 const Dashboard = () => {
   const [stats, setStats] = useState({ total: 0, spent: 0, hours: 0 });
 
   useEffect(() => {
-    // Fetch ALL bookings to calculate accurate stats
-    axios.get('/api/bookings')
+    // FIX: Use the direct Render URL for fetching ALL bookings to calculate accurate stats
+    axios.get(`/api/bookings`)
       .then(res => {
         const bookings = res.data;
         const total = bookings.length;
@@ -18,8 +23,10 @@ const Dashboard = () => {
         const hours = bookings.reduce((sum, b) => sum + (b.endTime - b.startTime), 0);
         
         setStats({ total, spent, hours });
-      });
+      })
+      .catch(err => console.error("Error fetching dashboard stats:", err)); // Added error logging
   }, []);
+  
   return (
     <div className="max-w-6xl mx-auto p-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome back!</h1>

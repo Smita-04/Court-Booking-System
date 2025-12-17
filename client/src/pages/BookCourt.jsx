@@ -24,14 +24,14 @@ const BookCourt = () => {
 
   useEffect(() => {
     // FIX: Use the direct Render URL for fetching resources
-    axios.get(`${RENDER_API_URL}/api/resources`).then(res => setResources(res.data));
+    axios.get(`/api/resources`).then(res => setResources(res.data));
   }, []);
 
   // Live Price Calculation
   useEffect(() => {
     if (selectedCourt) {
       // FIX: Use the direct Render URL for price calculation
-      axios.post(`${RENDER_API_URL}/api/calculate`, {
+      axios.post(`/api/calculate`, {
         date, courtId: selectedCourt.id, startTime, endTime, 
         coachId: selectedCoach?.id, equipmentList: selectedEquipment
       }).then(res => setPrice(res.data.price));
@@ -41,7 +41,7 @@ const BookCourt = () => {
   const handleBooking = async () => {
     try {
       // FIX: Use the direct Render URL for booking
-      await axios.post(`${RENDER_API_URL}/api/book`, {
+      await axios.post(`/api/book`, {
         date, courtId: selectedCourt.id, startTime, endTime,
         coachId: selectedCoach?.id, equipmentList: selectedEquipment, totalPrice: price
       });

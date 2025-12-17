@@ -13,7 +13,7 @@ const MyBookings = () => {
   useEffect(() => {
     // FIX 1: Use the direct Render URL
     // FIX 2: Correctly fetch /api/bookings (instead of /api/resources)
-    axios.get(`${RENDER_API_URL}/api/bookings`)
+    axios.get(`/api/bookings`)
       .then(res => setBookings(res.data))
       .catch(err => {
         console.error("Error fetching booking history:", err);
