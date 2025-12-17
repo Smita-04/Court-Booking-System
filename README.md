@@ -35,3 +35,40 @@ court-booking-system/
 ├── server.js # Core API Endpoints, Pricing Engine, and Transaction Logic
 ├── .env # Environment variables (Database URL, Port)
 └── package.json # Backend Dependencies
+
+---
+
+## ✨ Core Engineering Features
+
+| Feature | Technical Implementation | Principle Demonstrated |
+| :--- | :--- | :--- |
+| **Atomic Booking** | Utilizes **`Prisma.$transaction`** to ensure all resource reservations (Court, Coach, Equipment) are committed simultaneously or rolled back. | Data Integrity, Atomicity (ACID) |
+| **Dynamic Pricing Engine** | Decoupled, modular logic in `server.js` applies stacking multipliers and fixed surcharges based on database-driven `PricingRule` configurations. | Modularity, Separation of Concerns |
+| **Concurrency Control** | The database transaction inherently serializes concurrent requests attempting to book the same time slot, preventing race conditions. | Performance & Reliability |
+| **Availability Queries** | Efficiently queries availability across three different resource types using optimized Prisma queries. | Query Optimization |
+
+---
+
+## 🖥️ Application Evidence
+
+### **1. Dashboard View: Runtime Statistics**
+![Dashboard Screenshot](PASTE_DASHBOARD_SCREENSHOT_URL_HERE)
+
+### **2. Booking Wizard: Decoupled UI Flow**
+![Booking Step 1 Screenshot](PASTE_COURT_SELECTION_SCREENSHOT_URL_HERE)
+
+### **3. Final Confirmation: Calculated Price**
+![Confirmation Step Screenshot](PASTE_CONFIRMATION_STEP_SCREENSHOT_URL_HERE)
+
+### **4. Booking History (View Completed Transactions)**
+![Booking History Screenshot](PASTE_BOOKING_HISTORY_SCREENSHOT_URL_HERE)
+
+---
+
+## 🌐 Deployed Environment
+
+| Component | Host | URL |
+| :--- | :--- | :--- |
+| **Frontend (Client)** | **Vercel** | `PASTE_YOUR_VERCEL_LINK_HERE` |
+| **Backend (API)** | **Render** | `https://court-booking-system-qthg.onrender.com` |
+| **Source Code** | **GitHub** | `PASTE_YOUR_GITHUB_REPO_LINK_HERE` |
