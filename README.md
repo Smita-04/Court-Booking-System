@@ -18,23 +18,21 @@ This project is a fully functional, end-to-end booking application developed as 
 
 The project uses a standard monorepo layout, separating the client and server into distinct directories for isolated deployment and development environments.
 court-booking-system/
-├── client/ # Frontend Application (React/Vite)
-│ ├── public/
-│ ├── src/
-│ │ ├── components/ # Reusable UI elements (Navbar, Cards)
-│ │ ├── pages/ # Main view components (Dashboard, BookCourt, MyBookings)
-│ │ └── App.jsx # Main router configuration
-│ ├── package.json # Frontend Dependencies & Scripts
-│ └── vite.config.js # Vite and Final Deployment URL Configuration
-│
-└── server/ # Backend Application (Node/Express)
-├── prisma/
-│ ├── migrations/ # Database migration history
-│ ├── schema.prisma # Definitive Database Schema (Resources, Rules, Bookings)
-│ └── seed.js # Initial data for Courts, Coaches, Rules
-├── server.js # Core API Endpoints, Pricing Engine, and Transaction Logic
-├── .env # Environment variables (Database URL, Port)
-└── package.json # Backend Dependencies
+- **client/** (Frontend Application: React/Vite)
+    - `src/`
+      - `components/` (Reusable UI elements like Navbar)
+      - `pages/` (Main views: Dashboard, BookCourt, MyBookings)
+      - `App.jsx` (Main Router)
+    - `package.json` (Frontend Dependencies)
+    - `vite.config.js` (Final Deployment Configuration)
+  - **server/** (Backend Application: Node/Express)
+    - `prisma/`
+      - `schema.prisma` (Definitive Database Schema)
+      - `seed.js` (Initial Data Seeding)
+      - `migrations/` (Database Migration History)
+    - `server.js` (Core API Endpoints and Logic)
+    - `.env` (Environment Variables)
+    - `package.json` (Backend Dependencies)
 
 ---
 
