@@ -68,7 +68,7 @@ The project uses a standard monorepo layout, separating the client and server in
 ### **4. Booking History (View Completed Transactions)**
 <img width="1920" height="1080" alt="Screenshot (58)" src="https://github.com/user-attachments/assets/0f52374e-7b15-4315-b2b3-79036260e8eb" />
 
-### ***5. Backend Database Schema**
+### **5. Backend Database Schema**
 <img width="1920" height="1080" alt="Screenshot (59)" src="https://github.com/user-attachments/assets/618a99bc-0e1b-4901-9709-e19f250570fa" />
 
 <img width="1920" height="1080" alt="Screenshot (60)" src="https://github.com/user-attachments/assets/5cd2abf6-ac12-41de-b583-a8fbd9d28cef" />
