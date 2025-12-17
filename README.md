@@ -17,7 +17,7 @@ This project is a fully functional, end-to-end booking application developed as 
 ## 🏗️ Project Structure
 
 The project uses a standard monorepo layout, separating the client and server into distinct directories for isolated deployment and development environments.
-court-booking-system/
+- **court-booking-system/**
 - **client/** (Frontend Application: React/Vite)
     - `src/`
       - `components/` (Reusable UI elements like Navbar)
