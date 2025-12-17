@@ -128,5 +128,5 @@ app.post('/api/book', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const RENDER_PORT = process.env.PORT; 
+app.listen(RENDER_PORT, () => console.log(`Server running on port ${RENDER_PORT}`));
