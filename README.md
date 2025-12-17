@@ -94,6 +94,6 @@ The project uses a standard monorepo layout, separating the client and server in
 
 | Component | Host | URL |
 | :--- | :--- | :--- |
-| **Frontend (Client)** | **Vercel** | `PASTE_YOUR_VERCEL_LINK_HERE` |
+| **Frontend (Client)** | **Vercel** | `https://court-booking-six.vercel.app/` |
 | **Backend (API)** | **Render** | `https://court-booking-system-qthg.onrender.com` |
-| **Source Code** | **GitHub** | `PASTE_YOUR_GITHUB_REPO_LINK_HERE` |
+| **Source Code** | **GitHub** | `https://github.com/Smita-04/Court-Booking-System` |
