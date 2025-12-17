@@ -2,24 +2,48 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Calendar, Clock, MapPin, BadgeCheck } from 'lucide-react';
 
+// --------------------------------------------------------------------------------
+// RENDER URL: Using a constant for the deployment URL
+// --------------------------------------------------------------------------------
+const RENDER_API_URL = "https://court-booking-system-qthg.onrender.com";
+
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    // Fetch ALL bookings history
-    axios.get('/api/resources')
+    // FIX 1: Use the direct Render URL
+    // FIX 2: Correctly fetch /api/bookings (instead of /api/resources)
+    axios.get(`${RENDER_API_URL}/api/bookings`)
       .then(res => setBookings(res.data))
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error("Error fetching booking history:", err);
+        // Display a user-friendly error message if the API call fails
+        setBookings([{ 
+          id: -1, 
+          startTime: 0, 
+          endTime: 0, 
+          courtId: 0, 
+          totalPrice: 0, 
+          errorMessage: "Could not load history. API server is down or link is broken." 
+        }]);
+      });
   }, []);
+
+  // Filter out the error object if it was added
+  const validBookings = bookings.filter(b => b.id !== -1);
 
   return (
     <div className="max-w-4xl mx-auto p-8">
       <h1 className="text-2xl font-bold mb-6">Booking History</h1>
       
       <div className="space-y-4">
-        {bookings.length === 0 && <p className="text-gray-500">No bookings found.</p>}
+        {validBookings.length === 0 && bookings.length > 0 && bookings[0].errorMessage ? (
+            <p className="bg-red-100 p-4 rounded text-red-700 font-medium">{bookings[0].errorMessage}</p>
+        ) : validBookings.length === 0 ? (
+             <p className="text-gray-500">No bookings found.</p>
+        ) : null}
 
-        {bookings.map(booking => (
+        {validBookings.map(booking => (
           <div key={booking.id} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
             
             <div className="flex gap-4 items-center">

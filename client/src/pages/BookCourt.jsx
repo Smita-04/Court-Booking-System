@@ -3,6 +3,11 @@ import axios from 'axios';
 import { CheckCircle, ArrowRight, User, ShoppingBag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+// --------------------------------------------------------------------------------
+// RENDER URL: Using a constant for the deployment URL
+// --------------------------------------------------------------------------------
+const RENDER_API_URL = "https://court-booking-system-qthg.onrender.com";
+
 const BookCourt = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
@@ -18,13 +23,15 @@ const BookCourt = () => {
   const [selectedCoach, setSelectedCoach] = useState(null);
 
   useEffect(() => {
-    axios.get('/api/resources').then(res => setResources(res.data));
+    // FIX: Use the direct Render URL for fetching resources
+    axios.get(`${RENDER_API_URL}/api/resources`).then(res => setResources(res.data));
   }, []);
 
   // Live Price Calculation
   useEffect(() => {
     if (selectedCourt) {
-      axios.post('http://localhost:5000/api/calculate', {
+      // FIX: Use the direct Render URL for price calculation
+      axios.post(`${RENDER_API_URL}/api/calculate`, {
         date, courtId: selectedCourt.id, startTime, endTime, 
         coachId: selectedCoach?.id, equipmentList: selectedEquipment
       }).then(res => setPrice(res.data.price));
@@ -33,14 +40,15 @@ const BookCourt = () => {
 
   const handleBooking = async () => {
     try {
-      await axios.post('http://localhost:5000/api/book', {
+      // FIX: Use the direct Render URL for booking
+      await axios.post(`${RENDER_API_URL}/api/book`, {
         date, courtId: selectedCourt.id, startTime, endTime,
         coachId: selectedCoach?.id, equipmentList: selectedEquipment, totalPrice: price
       });
-      alert("Booking Confirmed!");
+      alert("Booking Confirmed! Please refresh My Bookings to view.");
       navigate('/my-bookings');
     } catch (err) {
-      alert("Failed: " + err.response?.data?.error);
+      alert("Booking Failed: " + (err.response?.data?.error || "Server or Network Error"));
     }
   };
 
@@ -80,13 +88,13 @@ const BookCourt = () => {
           <div key={court.id} onClick={() => setSelectedCourt(court)}
             className={`cursor-pointer border-2 rounded-xl overflow-hidden transition-all ${selectedCourt?.id === court.id ? 'border-green-500 ring-2 ring-green-100' : 'border-gray-200 hover:border-green-300'}`}>
             <img 
-  src={court.type === 'INDOOR' 
-    ? "https://images.pexels.com/photos/3660204/pexels-photo-3660204.jpeg?auto=compress&cs=tinysrgb&w=600" 
-    : "https://images.pexels.com/photos/2277981/pexels-photo-2277981.jpeg?auto=compress&cs=tinysrgb&w=600"
-  } 
-  alt="Court" 
-  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" 
-/>
+              src={court.type === 'INDOOR' 
+                ? "https://images.pexels.com/photos/3660204/pexels-photo-3660204.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                : "https://images.pexels.com/photos/2277981/pexels-photo-2277981.jpeg?auto=compress&cs=tinysrgb&w=600"
+              } 
+              alt="Court" 
+              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" 
+            />
             <div className="p-4">
               <div className="flex justify-between items-center">
                 <h3 className="font-bold text-lg">{court.name}</h3>
