@@ -1,0 +1,9 @@
+# Dependencies
+/node_modules
+
+# Environment Variables (CRUCIAL for security)
+.env
+
+# Build Artifacts
+/dist
+.DS_Store

@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Court {
+  id        Int       @id @default(autoincrement())
+  name      String
+  type      String
+  basePrice Float
+  bookings  Booking[]
+}
+
+model Coach {
+  id    Int    @id @default(autoincrement())
+  name  String
+  level String
+  price Float
+}
+
+model Equipment {
+  id    Int    @id @default(autoincrement())
+  name  String
+  price Float
+  stock Int
+}
+
+model PricingRule {
+  id        Int     @id @default(autoincrement())
+  name      String
+  type      String
+  value     Float
+  condition String
+}
+
+model Booking {
+  id          Int      @id @default(autoincrement())
+  date        DateTime
+  startTime   Int
+  endTime     Int
+  totalPrice  Float
+  courtId     Int
+  court       Court    @relation(fields: [courtId], references: [id])
+  coachId     Int?
+  equipments  Json?
+  createdAt   DateTime @default(now())
+}
